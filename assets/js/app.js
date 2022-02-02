@@ -1,5 +1,4 @@
-document.write('<p>Estadisticas centro medico ñuñoa</p>');
-
+//Codigo recibido inicialmente
 var radiologia = [
     {hora: '11:00', especialista: 'IGNACIO SCHULZ', paciente: 'FRANCISCA ROJAS', rut: '9878782-1', prevision: 'FONASA'},
     {hora: '11:30', especialista: 'FEDERICO SUBERCASEAUX', paciente: 'PAMELA ESTRADA', rut: '15345241-3', prevision: 'ISAPRE'},
@@ -43,20 +42,26 @@ let nuevaRadiologia= radiologia.unshift({hora: '09:00', especialista: 'RENÉ POB
 
 let borrarRadiologia= radiologia.shift();
 
-    borrarRadiologia= radiologia.pop();
+    borrarRadiologia= radiologia.pop();    
+       
+    
+for (const pacientes of radiologia) {
+    document.getElementById("cambios-radiologia").innerHTML+=`    
+    <p>Hora: ${pacientes.hora} | Especialista: ${pacientes.especialista} | Paciente: ${pacientes.paciente} | Rut: ${pacientes.rut} | Previsión: ${pacientes.prevision}`    
+};
 
 //Tercer requerimiento
 
 let listaDental=dental.forEach((pacientes)=>{
-    document.write(`<p>${pacientes.hora} - ${pacientes.especialista} - ${pacientes.paciente} - ${pacientes.rut} - ${pacientes.prevision}`);
-})
+    document.getElementById("lista-dental").innerHTML+=(`<p>${pacientes.hora} - ${pacientes.especialista} - ${pacientes.paciente} - ${pacientes.rut} - ${pacientes.prevision}`);
+});
 
 //Cuarto requerimiento
 
 let listaTotal=radiologia.concat(traumatologia,dental);
 
 let mostrarLista=listaTotal.map((pacientes)=>{
-    document.write(`<p>${pacientes.paciente}<p>`)     
+    document.getElementById("lista-total").innerHTML+=`<p>${pacientes.paciente}</p>`     
 });
 
 //Quinto requerimiento
@@ -66,14 +71,20 @@ let filtrarDental=dental.filter((pacientes)=>{
 });
 
 mostrarFiltroD=filtrarDental.forEach((pacientes)=>{
-    document.write(`<p>`)
-})
+    document.getElementById("dental-isapre").innerHTML+=`<p>${pacientes.paciente} - ${pacientes.prevision}</p>`
+});
 
-console.log(filtrarDental);
+//Sexto requerimiento
 
-//Agregar código para el desafio 2 aquí
+let filtrarTraumatologia=traumatologia.filter((pacientes)=>{
+    return pacientes.prevision=="FONASA"
+});
 
+mostrarFiltroT=filtrarTraumatologia.map((pacientes)=>{
+    document.getElementById("traum-fonasa").innerHTML+=`<p>${pacientes.paciente} - ${pacientes.prevision}</p>`
+});
 
+//Codigo recibido inicialmente
 document.write(`<p>Cantidad de atenciones para Radiología: ${radiologia.length}</p>`);
 document.write(`<p>Cantidad de atenciones para Traumatología: ${traumatologia.length}</p>`);
 document.write(`<p>Cantidad de atenciones para Dental: ${dental.length}</p>`);
@@ -82,3 +93,28 @@ document.write(`<p>Cantidad de atenciones para Dental: ${dental.length}</p>`);
 document.write(`<p>Primera atencion: ${radiologia[0].paciente} - ${radiologia[0].prevision} | Última atención: ${radiologia[radiologia.length -1].paciente} - ${radiologia[radiologia.length -1].prevision}.</p>`);
 document.write(`<p>Primera atencion: ${traumatologia[0].paciente} - ${traumatologia[0].prevision} | Última atención: ${traumatologia[traumatologia.length -1].paciente} - ${traumatologia[traumatologia.length -1].prevision}.</p>`);
 document.write(`<p>Primera atencion: ${dental[0].paciente} - ${dental[0].prevision} | Última atención: ${dental[dental.length -1].paciente} - ${dental[dental.length -1].prevision}.</p>`);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
