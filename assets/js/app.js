@@ -8,7 +8,7 @@ var radiologia = [
 ];
 
 var traumatologia = [
-    {hora: '8:00',  especialista: 'MARIA PAZ ALTUZARRA', paciente: 'PAULA SANCHEZ',     rut: '15554774-5', prevision: 'FONASA'},
+    {hora: '08:00',  especialista: 'MARIA PAZ ALTUZARRA', paciente: 'PAULA SANCHEZ',     rut: '15554774-5', prevision: 'FONASA'},
     {hora: '10:00', especialista: 'RAUL ARAYA',          paciente: 'ANGÉLICA NAVAS',    rut: '15444147-9', prevision: 'ISAPRE'},
     {hora: '10:30', especialista: 'MARIA ARRIAGADA',     paciente: 'ANA KLAPP',         rut: '17879423-9', prevision: 'ISAPRE'},
     {hora: '11:00', especialista: 'ALEJANDRO BADILLA',   paciente: 'FELIPE MARDONES',   rut: '1547423-6', prevision: 'ISAPRE'},
@@ -30,12 +30,34 @@ var dental = [
 
 //Requerimiento 1
 
-let nuevaRadiologia= radiologia.unshift({hora: '09:00', especialista: 'RENÉ POBLETE', paciente: 'ANA GELLONA', rut: '13123329-7', prevision: 'ISAPRE'},
-                                        {hora: '09:30', especialista: 'MARIA SOLAR', paciente: 'RAMIRO ANDRADE', rut: '12221451-K', prevision: 'FONASA'},
-                                        {hora: '10:00', especialista: 'RAUL LOYOLA', paciente: 'CARMEN ISLA', rut: '10112348-3 ', prevision: 'ISAPRE'},
-                                        {hora: '10:30', especialista: 'ANTONIO LARENAS', paciente: 'PABLO LOAYZA', rut: '13453234-1', prevision: 'ISAPRE'},
-                                        {hora: '12:00', especialista: 'MATIAS ARAVENA', paciente: 'SUSANA POBLETE', rut: '14345656-6' , prevision: 'FONASA'});
+const nuevaTraumatologia=traumatologia.unshift({hora: '09:00', especialista: 'RENÉ POBLETE', paciente: 'ANA GELLONA', rut: '13123329-7', prevision: 'ISAPRE'},
+                                                {hora: '09:30', especialista: 'MARIA SOLAR', paciente: 'RAMIRO ANDRADE', rut: '12221451-K', prevision: 'FONASA'},
+                                                {hora: '10:00', especialista: 'RAUL LOYOLA', paciente: 'CARMEN ISLA', rut: '10112348-3 ', prevision: 'ISAPRE'},
+                                                {hora: '10:30', especialista: 'ANTONIO LARENAS', paciente: 'PABLO LOAYZA', rut: '13453234-1', prevision: 'ISAPRE'},
+                                                {hora: '12:00', especialista: 'MATIAS ARAVENA', paciente: 'SUSANA POBLETE', rut: '14345656-6' , prevision: 'FONASA'});
 
+traumatologia.sort((paciente1,paciente2)=>{
+    if (paciente1.hora>paciente2.hora) {
+        return 1
+    }else if(paciente2.hora>paciente1.hora){
+        return -1
+    }else{return 0}
+ }); 
+
+console.log(traumatologia);
+
+const mostrarTraumatologia=traumatologia.map((pacientes)=>{
+    
+    document.getElementById("cambios-traumatologia").innerHTML+= `
+            <tr>
+                <td>${pacientes.hora}</td>
+                <td>${pacientes.especialista}</td>
+                <td>${pacientes.paciente}</td>
+                <td>${pacientes.rut}</td>
+                <td>${pacientes.prevision}</td>
+            </tr>
+        `;
+});
 
 
 //Segundo requerimiento
